@@ -1,7 +1,7 @@
 import React from 'react';
 import Weather from './Weather';
 import './App.css';
-
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   return (
@@ -9,8 +9,8 @@ function App() {
       <div className="container">
         <Weather />
         <footer>
-        <a href="https://github.com/dian1p/react-weather-app"
-        target="_blank" rel="noopener noreferrer">{" "}Open Source GitHub</a>{" "}by Dian 
+        <a className="Source"href="https://github.com/dian1p/react-weather-app"
+        target="_blank" rel="noopener noreferrer">Open Source GitHub</a>by Dian 
         </footer>
       </div>
     </div>
