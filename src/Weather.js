@@ -6,7 +6,7 @@ import './Weather.css';
 function Weather() {
     return (
         <div className="Weather">
-          <WeatherInfo defaultCity="Berlin"/>
+          <WeatherInfo defaultCity="Jakarta"/>
         </div>
     )
 }

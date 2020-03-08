@@ -3,15 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import FormattedDate from './FormattedDate';
 import './Weather.css';
 
 function WeatherInfo(props) {
     const [weatherData, setWeatherData] = useState({ ready: false});
     function handleResponse(response){
-        console.log(response.data);
         setWeatherData({
             ready: true,
-            date: "Sunday, 8 March 2020",
+            date: new Date(response.data.dt * 1000),
             temperature: response.data.main.temp,
             humidity: response.data.main.humidity,
             wind: response.data.wind.speed,
@@ -47,12 +47,11 @@ function WeatherInfo(props) {
            
                 <div>
                     <form className="left">
-                        <h1 id="temp">{Math.round(weatherData.temperature)}°C</h1>
+                        <h1>{Math.round(weatherData.temperature)}°C</h1>
                         <a id="temp-cel" href="" className="active">{Math.round(weatherData.temperature)}°C</a>{" "} |
                         <a id="temp-fah" href="">°F</a>
                         <br />
-                        <p id="get-date">{weatherData.date}</p>
-                        <span id="get-time"></span>
+                        <FormattedDate date={weatherData.date} />
                     </form>
                     <form className="right">
                         <h3>Details</h3>
@@ -67,8 +66,7 @@ function WeatherInfo(props) {
             </div>
         );
     } else {
-        const apiKey = "88cb0b2a18f4a84cc455641324b32a73";
-        let city = "Amsterdam"
+        const apiKey = "ee9060a17d3b031011ce7cd1a42cfa7b";
         let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
         axios.get(apiUrl).then(handleResponse);
 
