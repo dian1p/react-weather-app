@@ -21,6 +21,7 @@ function WeatherInfo() {
                 <li>Visibility: <span id="visible"></span>km</li>
                 </ul>
             </form>
+            
         </div>
     )
 }

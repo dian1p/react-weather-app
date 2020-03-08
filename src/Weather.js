@@ -1,12 +1,14 @@
 import React from 'react';
-import './Weather.css';
 import Search from './Search';
-
+import WeatherInfo from './WeatherInfo';
+import axios from 'axios';
+import './Weather.css';
 
 function Weather() {
     return (
-        <div className="weather">
+        <div className="Weather">
           <Search /> 
+          <WeatherInfo />
         </div>
     )
 }

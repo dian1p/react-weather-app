@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import './Weather.css';
-import WeatherInfo from './WeatherInfo';
 
 function Search() {
     return (
@@ -14,18 +13,17 @@ function Search() {
                 type="text"
                 placeholder="search city"
                 id="city-input"
-                autocomplete="off"
+                autoFocus="on"
                />
-               <button type="submit">
+               <button type="submit" className="button">
                <FontAwesomeIcon icon={faSearch} />
                </button>
-               <button type="submit">
+               <button type="submit" className="button">
                <FontAwesomeIcon icon={faMapMarkerAlt} />
                </button>
                <h2 id="show-city">Amsterdam</h2>
            </form>
-           <img className="image1" src="" id="icon" alt="weather logo" />
-           <WeatherInfo />
+           <img className="image1" src="" id="icon" alt="weather logo" />         
        </div>
     
     )

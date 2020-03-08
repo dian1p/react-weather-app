@@ -1,4 +1,4 @@
-.frame {
+.Weather {
     margin: auto;
     background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);
     padding: 2em;
@@ -6,6 +6,11 @@
     width: 50em;
     text-align: center;
   }
+
+.button {
+    height: 2em;
+    width: 2.5em;
+}
 
 h2 {
      padding: 1em;
