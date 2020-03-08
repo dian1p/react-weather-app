@@ -1,28 +1,82 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 import './Weather.css';
 
-function WeatherInfo() {
-    return (
-        <div>
-            <form className="left">
-                <h1 id="temp">°C</h1>
-                <a id="temp-cel" href="" class="active">°C</a>{" "} |
-                <a id="temp-fah" href="">°F</a>
-                <br />
-                <p id="get-date"></p>
-                <span id="get-time"></span>
-            </form>
-            <form className="right">
-                <h3>Detail:</h3>
-                <hr />   
-                <ul>
-                <li>Humidity: <span id="humid"></span>%</li>
-                <li>Wind: <span id="winds"></span>km/hr</li>
-                <li>Visibility: <span id="visible"></span>km</li>
-                </ul>
-            </form>
-            
-        </div>
-    )
+function WeatherInfo(props) {
+    const [weatherData, setWeatherData] = useState({ ready: false});
+    function handleResponse(response){
+        console.log(response.data);
+        setWeatherData({
+            ready: true,
+            date: "Sunday, 8 March 2020",
+            temperature: response.data.main.temp,
+            humidity: response.data.main.humidity,
+            wind: response.data.wind.speed,
+            visibility: response.data.visibility,
+            city: response.data.name,
+            description: response.data.weather[0].description,
+        });
+    }
+
+    if (weatherData.ready) {
+        return (
+            <div className="frame">
+               <form id="signup-form">
+                   <input
+                    className="col-4"
+                    type="text"
+                    placeholder="search city"
+                    id="city-input"
+                    autoFocus="on"
+                   />
+                   <button type="submit" className="button">
+                   <FontAwesomeIcon icon={faSearch} />
+                   </button>
+                   <button type="submit" className="button">
+                   <FontAwesomeIcon icon={faMapMarkerAlt} />
+                   </button>
+                   <h2 id="show-city">{weatherData.city}</h2>
+                   <img className="image1" src={weatherData.iconUrl} id="icon" alt="weather logo" /> 
+                   <h6 className="text-capitalize font-italic">{weatherData.description}</h6>
+               </form>
+                
+
+           
+                <div>
+                    <form className="left">
+                        <h1 id="temp">{Math.round(weatherData.temperature)}°C</h1>
+                        <a id="temp-cel" href="" className="active">{Math.round(weatherData.temperature)}°C</a>{" "} |
+                        <a id="temp-fah" href="">°F</a>
+                        <br />
+                        <p id="get-date">{weatherData.date}</p>
+                        <span id="get-time"></span>
+                    </form>
+                    <form className="right">
+                        <h3>Details</h3>
+                        <hr />   
+                        <ul>
+                        <li>Humidity {weatherData.humidity}<span className="font-italic"id="humid">%</span></li>
+                        <li className="wind">Wind {weatherData.wind}<span className="font-italic"id="winds">km/hr</span></li>
+                        <li>Visibility {weatherData.visibility}<span className="font-italic"id="visible">km</span></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        );
+    } else {
+        const apiKey = "88cb0b2a18f4a84cc455641324b32a73";
+        let city = "Amsterdam"
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
+        axios.get(apiUrl).then(handleResponse);
+
+        return "Loading..."
+    }
+    
+        
+  
 }
+
 export default WeatherInfo;

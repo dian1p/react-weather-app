@@ -36,11 +36,21 @@ li {
     float: left;
     
 }
+.right h3 {
+    text-align: center;
+}
+.right .wind {
+    word-spacing: 4.5em;
+}
+.right .span {
+    font-size: 80%;
+}
 .right {
     margin: 1em;
     padding: 1em;
     float: right;
-    word-spacing: 1.6em;
+    word-spacing: 3em;
+    text-align: left;
     
 }
 
