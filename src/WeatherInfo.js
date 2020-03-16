@@ -1,27 +1,32 @@
 import React from 'react';
 import FormattedDate from './FormattedDate';
+import WeatherIcon from './WeatherIcon';
+import WeatherTemperature from './WeatherTemperature';
 
 import './Weather.css';
 
 function WeatherInfo(props) {
     return ( 
       <div className="WeatherInfo">
-        <form className="left">
-            <h1>{Math.round(props.data.temperature)}°C</h1>
-            <a id="temp-cel" href="" className="active">{Math.round(props.data.temperature)}°C</a>{" "} |
-            <a id="temp-fah" href="">°F</a>
-            <br />
-            <FormattedDate date={props.data.date} />
-        </form>
-        <form className="right">
-            <h3>Details</h3>
-            <hr />   
-            <ul>
-            <li>Humidity {props.data.humidity}<span className="font-italic"id="humid">%</span></li>
-            <li className="wind">Wind {props.data.wind}<span className="font-italic"id="winds">km/hr</span></li>
-            <li>Visibility {props.data.visibility}<span className="font-italic"id="visible">km</span></li>
-            </ul>
-        </form>
+        <div>
+          <WeatherIcon code={props.data.icon} />
+          <p className="text-capitalize font-italic">{props.data.description}</p>
+        </div>
+          <div className="left">
+              <WeatherTemperature celcius={props.data.temperature} />
+              <br/>
+              <FormattedDate date={props.data.date} />
+          </div>
+          <div className="right">
+              <h3>Details</h3>
+              <hr />   
+              <ul>
+              <li>Humidity: {props.data.humidity}<span className="font-italic">%</span></li>
+              <li className="wind">Wind/hr: {props.data.wind}<span className="font-italic">km/hr</span></li>
+              <li>Visibility: {props.data.visibility}<span className="font-italic">km</span></li>
+              </ul>
+          </div>
+      
       </div>
     );
 }

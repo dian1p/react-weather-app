@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import WeatherInfo from './Weatherinfo';
+
 import axios from 'axios';
 import './Weather.css';
 
@@ -10,6 +11,7 @@ function Weather(props) {
     const [weatherData, setWeatherData] = useState({ ready: false});
     const [city, setCity] =useState(props.defaultCity);
     function handleResponse(response){
+        console.log(response.data)
         setWeatherData({
             ready: true,
             date: new Date(response.data.dt * 1000),
@@ -19,7 +21,9 @@ function Weather(props) {
             visibility: response.data.visibility,
             city: response.data.name,
             description: response.data.weather[0].description,
-            iconUrl:`http://openweathermap.org/img/wn/10d@2x.png    `
+            iconUrl:`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+            icon: response.data.weather[0].icon,
+            
         });
     }
 
@@ -49,17 +53,16 @@ function Weather(props) {
                     autoFocus="on"
                     onChange={handleCityChange}
                    />
-                   <button type="submit" className="button">
-                   <FontAwesomeIcon icon={faSearch} />
-                   </button>
-                   <button type="submit" className="button">
-                   <FontAwesomeIcon icon={faMapMarkerAlt} />
-                   </button>
+                    <button type="submit" className="button">
+                        <FontAwesomeIcon icon={faSearch} />
+                    </button>
+                    <button type="submit" className="button">
+                        <FontAwesomeIcon icon={faMapMarkerAlt} />
+                    </button>
                    <h2>{weatherData.city}</h2>
-                   <img className="image1" src={weatherData.iconUrl} id="icon" alt="weather logo" /> 
-                   <h6 className="text-capitalize font-italic">{weatherData.description}</h6>
                </form>
                 <WeatherInfo data={weatherData} />
+               
             </div>
         );
     } else {

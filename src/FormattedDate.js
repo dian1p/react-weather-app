@@ -16,7 +16,7 @@ function FormattedDate(props) {
     hours = hours % 12;
     hours = hours ? hours : 12;
     return(
-        <div>
+        <div className="date">
             <p>{day}, {date}-{month}-{year}</p>
             <span>{hours}:{minutes} {ampm}</span>
         </div>

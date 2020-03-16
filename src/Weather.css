@@ -1,62 +1,69 @@
 .Weather {
     margin: auto;
     background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);
-    padding: 2em;
+    padding: 3em;
     height: 56em;
-    width: 50em;
+    max-width: 75%;
     text-align: center;
+    color: #191970;
   }
 
 .button {
     height: 2em;
     width: 2.5em;
+    color: #191970
 }
 
-h2 {
+.Weather h2 {
      padding: 1em;
 }
-.image1 {
-    display: block;
-    margin: auto;
-    border-radius: 0.5em;
-    width: 25%;
-}
 
-li {
+.WeatherInfo li {
     list-style: none;
-    margin: 0;
-    padding-left: 0;
 }
   
 .left {
     margin: 1em;
-    padding: 1em;
+    padding-left: 5em;
     text-align: center;
-    line-height: 1.6;
     float: left;
+    max-width: 40%;
+    font-size: 80%
     
 }
 .right h3 {
     text-align: center;
-}
-.right .wind {
-    word-spacing: 4.5em;
-}
-.right .span {
-    font-size: 80%;
-}
-.right {
-    margin: 1em;
-    padding: 1em;
-    float: right;
-    word-spacing: 3em;
-    text-align: left;
-    
+    font-weight: bold;
 }
 
+.right {
+    margin: 1.5em;
+    padding-right: 7em;
+    float: right;
+    word-spacing: 2em;
+    text-align: left;
+    max-width: 40%;
+    font-size: 90%;   
+}
+.right ul {
+    padding: 1em;
+}
+.date {
+    font-size: 1.2em;
+}
+.temperature {
+    font-size: 3.5em;
+    font-weight: bold;
+}
+.unit {
+    position: relative;
+    top: -0.9em;
+    font-size: 1.5em;
+}
 .left .active {
     color: black;
     cursor: default;
+    color: #191970;
 }
   
 .left .active:hover {
